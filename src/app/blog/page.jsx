@@ -1,10 +1,11 @@
 import PostCard from "@/components/postCard/PostCard";
 import styles from "./blog.module.css";
+import { getPosts } from "@/lib/data";
 // import { getPosts } from "@/lib/data";
 
 const postData = [
   {
-    id: 1,
+    id: "1",
     img: "https://images.pexels.com/photos/2023384/pexels-photo-2023384.jpeg",
     createdAt: "22/12/2023 10:10:10",
     title: "Post1",
@@ -12,7 +13,7 @@ const postData = [
     slug: "/"
   },
   {
-    id: 2,
+    id: "2",
     img: "https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg",
     createdAt: "22/12/2023 10:10:10",
     title: "Post2",
@@ -20,7 +21,7 @@ const postData = [
     slug: "/"
   },
   {
-    id: 3,
+    id: "3",
     img: "https://images.pexels.com/photos/2194261/pexels-photo-2194261.jpeg",
     createdAt: "22/12/2023 10:10:10",
     title: "Post3",
@@ -28,7 +29,7 @@ const postData = [
     slug: "/"
   },
   {
-    id: 4,
+    id: "4",
     img: "https://images.pexels.com/photos/288621/pexels-photo-288621.jpeg",
     createdAt: "22/12/2023 10:10:10",
     title: "Post4",
@@ -40,10 +41,12 @@ const postData = [
 // FETCH DATA WITH AN API
 const getData = async () => {
 
-  return postData;
+  // const url = "http://localhost:3000/api/blog"
+  const url = "https://jsonplaceholder.typicode.com/posts"
 
-  const res = await fetch("http://localhost:3000/api/blog", {
-    next: { revalidate: 3600 },
+  const res = await fetch(url, {
+    next: { revalidate: 3600 }, // refresh data ทุกๆ 3600 วินาที
+    // cache: "no-store",
   });
 
   if (!res.ok) {
@@ -53,12 +56,13 @@ const getData = async () => {
   return res.json();
 };
 
-const BlogPage = async () => {
+const BlogPage = async ({ searchParams }) => {
+  
   // FETCH DATA WITH AN API
-  const posts = await getData();
+  // const posts = await getData();
 
   // FETCH DATA WITHOUT AN API
-  // const posts = await getPosts();
+  const posts = await getPosts();
 
   return (
     <div className={styles.container}>
