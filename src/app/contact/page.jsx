@@ -8,7 +8,7 @@ const NoSSRTest = dynamic(() => import("@/components/NoSSRTest"), {
 });
 
 export const metadata = {
-  title: "Next App Contact Page.",
+  title: "Contact Page",
   description: "Contact Description",
 };
 

@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./links.module.css";
 import NavLink from "./navlink/NavLink";
 import Image from "next/image";
+import { handleGithubLogin, handleLogout } from "@/lib/action";
+import GitHubIcon from '@mui/icons-material/GitHub';
+
+import styles from "./links.module.css";
 
 const links = [
   {
@@ -24,10 +27,9 @@ const links = [
   },
 ];
 
-function Links() {
+function Links({ session }) {
   const [open, setOpen] = useState(false);
 
-  const session = true;
   const isAdmin = true;
 
   return (
@@ -36,17 +38,31 @@ function Links() {
         {links.map((link) => (
           <NavLink item={link} key={link.title} />
         ))}
-        {session ? (
+        {session?.user ? (
           <>
-            {isAdmin && <NavLink item={{ title: "admin", path: "/admin" }} />}
-            <button className={styles.logout}>Logout</button>
+            {session.user?.isAdmin && <NavLink item={{ title: "admin", path: "/admin" }} />}
+            <form action={handleLogout}>
+              <button className={styles.logout}>Logout</button>
+            </form>
           </>
         ) : (
-          <NavLink item={{ title: "Login", path: "/login" }} />
+          <>
+            {/* <NavLink item={{ title: "Login", path: "/login" }} icon={<GitHubIcon />} /> */}
+            <form action={handleGithubLogin}>
+              <button className={styles.btnLogin}><GitHubIcon /> Login</button>
+            </form>
+          </>
         )}
       </div>
       {/* <button className={styles.menuBtn} onClick={() => setOpen(prev => !prev)}>Menu</button> */}
-      <Image  className={styles.menuBtn} src="/images/menu.png" alt="" width={30} height={30} onClick={() => setOpen(prev => !prev)} />
+      <Image
+        className={styles.menuBtn}
+        src="/images/menu.png"
+        alt=""
+        width={30}
+        height={30}
+        onClick={() => setOpen((prev) => !prev)}
+      />
       {open && (
         <div className={styles.mobileLinks}>
           {links.map((link) => (

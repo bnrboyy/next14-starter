@@ -1,9 +1,13 @@
-import React from 'react'
+import { handleGithubLogin } from "@/lib/action";
 
-function Login() {
+async function Login() {
   return (
-    <div>Login Page</div>
-  )
+    <div>
+      <form action={handleGithubLogin}>
+        <button>Login with Github</button>
+      </form>
+    </div>
+  );
 }
 
-export default Login
+export default Login;

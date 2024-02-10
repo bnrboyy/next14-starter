@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./about.module.css";
 
 export const metadata = {
-  title: "Next App About Page.",
+  title: "About Page",
   description: "About Description",
 };
 

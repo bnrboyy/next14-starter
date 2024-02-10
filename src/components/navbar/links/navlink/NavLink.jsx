@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 import styles from "./navlink.module.css";
 
-function NavLink({ item }) {
+function NavLink({ item, icon = null }) {
   const pathName = usePathname();
 
   return (
@@ -16,6 +16,7 @@ function NavLink({ item }) {
       href={item.path}
       key={item.title}
     >
+      {icon && icon}
       {item.title}
     </Link>
   );
