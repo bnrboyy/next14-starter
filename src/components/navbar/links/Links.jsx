@@ -47,10 +47,10 @@ function Links({ session }) {
           </>
         ) : (
           <>
-            {/* <NavLink item={{ title: "Login", path: "/login" }} icon={<GitHubIcon />} /> */}
-            <form action={handleGithubLogin}>
+            <NavLink item={{ title: "Login", path: "/login" }} />
+            {/* <form action={handleGithubLogin}>
               <button className={styles.btnLogin}><GitHubIcon /> Login</button>
-            </form>
+            </form> */}
           </>
         )}
       </div>

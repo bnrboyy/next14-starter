@@ -1,9 +1,15 @@
-import React from 'react'
+import { register } from "@/lib/action";
+import styles from "./register.module.css";
+import RegisterForm from "@/components/registerform/RegisterForm";
 
 function Register() {
   return (
-    <div>Register Page</div>
-  )
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <RegisterForm />
+      </div>
+    </div>
+  );
 }
 
-export default Register
+export default Register;
