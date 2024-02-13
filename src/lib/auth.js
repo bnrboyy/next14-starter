@@ -6,6 +6,7 @@ import Google from "next-auth/providers/google";
 
 import { connDB } from "./utils";
 import { User } from "./models";
+import { authConfig } from "./auth.config";
 
 const login = async (credentials) => {
   try {
@@ -38,6 +39,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  ...authConfig,
   providers: [
     GitHub({
       clientId: process.env.GITHUB_ID,
@@ -47,7 +49,6 @@ export const {
       async authorize(credentials) {
         try {
           const user = await login(credentials);
-          console.log("555555")
           return user;
         } catch (error) {
           return null;
@@ -71,12 +72,14 @@ export const {
 
             await newUser.save();
           }
+          return { success: true };
         } catch (err) {
           console.log(err);
-          return false;
+          return {error: "Something went wrong"};
         }
       }
       return true;
     },
+    ...authConfig.callbacks,
   },
 });

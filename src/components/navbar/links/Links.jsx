@@ -40,14 +40,14 @@ function Links({ session }) {
         ))}
         {session?.user ? (
           <>
-            {session.user?.isAdmin && <NavLink item={{ title: "admin", path: "/admin" }} />}
-            <form action={handleLogout}>
+            {session.user?.isAdmin && <NavLink item={{ title: "AdminPanel", path: "/admin" }} />}
+            <form className={styles.btn} action={handleLogout}>
               <button className={styles.logout}>Logout</button>
             </form>
           </>
         ) : (
           <>
-            <NavLink item={{ title: "Login", path: "/login" }} />
+            <NavLink className={styles.btn} item={{ title: "Login", path: "/login" }} />
             {/* <form action={handleGithubLogin}>
               <button className={styles.btnLogin}><GitHubIcon /> Login</button>
             </form> */}

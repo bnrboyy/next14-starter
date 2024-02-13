@@ -1,7 +1,5 @@
-import { handleGithubLogin, login } from "@/lib/action";
-import styles from "./login.module.css";
 import LoginForm from "@/components/loginform/LoginForm";
-
+import styles from "./login.module.css";
 
 async function Login() {
   return (
